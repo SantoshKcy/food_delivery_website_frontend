@@ -1,9 +1,9 @@
-import { CircleEllipsis } from 'lucide-react';
+import { Ban } from 'lucide-react';
 import { useState } from 'react';
 import { FaEye, FaPrint, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const PendingOrder = () => {
+const CancelOrder = () => {
     const [search, setSearch] = useState('');
 
     // Example order data
@@ -62,7 +62,7 @@ const PendingOrder = () => {
         <div className="p-3 bg-white rounded-lg">
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-medium flex items-center">
-                    <CircleEllipsis className="mr-2" /> Pending Orders ({orders.length})
+                    <Ban className="mr-2" /> Cancelled Orders ({orders.length})
                 </h2>
                 <div className="relative w-96">
                     <input
@@ -119,4 +119,4 @@ const PendingOrder = () => {
     );
 };
 
-export default PendingOrder;
+export default CancelOrder;
