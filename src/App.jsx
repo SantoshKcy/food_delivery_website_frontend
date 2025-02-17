@@ -34,85 +34,52 @@ const Settings = lazy(() => import("./core/private/admin/pages/Setting"));
 
 
 function App() {
-    // LOGIN logic TODO
-    const isAdmin = false;
-
     const router = createBrowserRouter([
-        // Public Routes
         {
             path: "/",
-            element: <Home />,
+            element: <Suspense ><Home /></Suspense>,
+            errorElement: <>Error</>,
         },
         {
             path: "/login",
-            element: <Login />,
+            element: <Suspense ><Login /></Suspense>,
+            errorElement: <>Error</>,
         },
-        {
-            path: "/register",
-            element: <Register />,
-        },
-        {
-            path: "/contact-us",
-            element: <ContactUs />,
-        },
-        {
-            path: "/privacy-and-policy",
-            element: <PrivacyPolicy />,
-        },
-        {
-            path: "/about-us",
-            element: <About />,
-        },
-        {
-            path: "/terms-and-conditions",
-            element: <TermsCondition />,
-        },
-        {
-            path: "/refund-policy",
-            element: <RefundPolicy />,
-        },
-        {
-            path: "/cancellation-policy",
-            element: <CancellationPolicy />,
-        },
-        {
-            path: "/delivery-charges",
-            element: <DeliveryCharges />,
-        },
+        { path: "/register", element: <Suspense ><Register /></Suspense>, errorElement: <>Error</> },
+        { path: "/contact-us", element: <Suspense ><ContactUs /></Suspense>, errorElement: <>Error</> },
+        { path: "/privacy-and-policy", element: <Suspense ><PrivacyPolicy /></Suspense>, errorElement: <>Error</> },
+        { path: "/about-us", element: <Suspense ><About /></Suspense>, errorElement: <>Error</> },
+        { path: "/terms-and-conditions", element: <Suspense ><TermsCondition /></Suspense>, errorElement: <>Error</> },
+        { path: "/refund-policy", element: <Suspense ><RefundPolicy /></Suspense>, errorElement: <>Error</> },
+        { path: "/cancellation-policy", element: <Suspense ><CancellationPolicy /></Suspense>, errorElement: <>Error</> },
+        { path: "/delivery-charges", element: <Suspense ><DeliveryCharges /></Suspense>, errorElement: <>Error</> },
 
-        // Private Routes (Admin)
         {
             path: "/admin",
-            element: <Layout />,
+            element: <Suspense ><Layout /></Suspense>,
+            errorElement: <>Error</>,
             children: [
-                { path: "dashboard", element: <Dashboard /> },
-                { path: "category/all-categories", element: <AllCategory /> },
-                { path: "category/add-category", element: <AddCategory /> },
-                { path: "subcategory/add-subcategory", element: <AddSubcategory /> },
-                { path: "subcategory/all-subcategories", element: <AllSubcategory /> },
-                { path: "support", element: <Support /> },
-                { path: "users", element: <User /> },
-                { path: "menu/all-items", element: <ViewItem /> },
-                { path: "menu/add-item", element: <AddItem /> },
-                { path: "order/all-orders", element: <AllOrder /> },
-                { path: "order/pending-orders", element: <PendingOrder /> },
-                { path: "order/confirmed-orders", element: <ConfirmOrder /> },
-                { path: "order/processing-orders", element: <ProcessingOrder /> },
-                { path: "order/completed-orders", element: <CompletedOrder /> },
-                { path: "order/cancelled-orders", element: <CancelOrder /> },
-                { path: "reviews", element: <Review /> },
-                { path: "setting", element: <Settings /> },
-
-
-                // { path: "booking", element: <BookingIndex /> },
+                { path: "dashboard", element: <Suspense ><Dashboard /></Suspense>, errorElement: <>Error</> },
+                { path: "category/all-categories", element: <Suspense ><AllCategory /></Suspense>, errorElement: <>Error</> },
+                { path: "category/add-category", element: <Suspense ><AddCategory /></Suspense>, errorElement: <>Error</> },
+                { path: "subcategory/add-subcategory", element: <Suspense ><AddSubcategory /></Suspense>, errorElement: <>Error</> },
+                { path: "subcategory/all-subcategories", element: <Suspense ><AllSubcategory /></Suspense>, errorElement: <>Error</> },
+                { path: "support", element: <Suspense ><Support /></Suspense>, errorElement: <>Error</> },
+                { path: "users", element: <Suspense ><User /></Suspense>, errorElement: <>Error</> },
+                { path: "menu/all-items", element: <Suspense ><ViewItem /></Suspense>, errorElement: <>Error</> },
+                { path: "menu/add-item", element: <Suspense ><AddItem /></Suspense>, errorElement: <>Error</> },
+                { path: "order/all-orders", element: <Suspense ><AllOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "order/pending-orders", element: <Suspense ><PendingOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "order/confirmed-orders", element: <Suspense ><ConfirmOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "order/processing-orders", element: <Suspense ><ProcessingOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "order/completed-orders", element: <Suspense ><CompletedOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "order/cancelled-orders", element: <Suspense ><CancelOrder /></Suspense>, errorElement: <>Error</> },
+                { path: "reviews", element: <Suspense ><Review /></Suspense>, errorElement: <>Error</> },
+                { path: "setting", element: <Suspense ><Settings /></Suspense>, errorElement: <>Error</> },
             ],
         },
 
-        // Catch-all
-        {
-            path: "*",
-            element: <>Page not found</>,
-        },
+        { path: "*", element: <>Page not found</>, errorElement: <>Error</> },
     ]);
 
     return (
