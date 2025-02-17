@@ -1,122 +1,124 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { InfoProvider } from "./context/InfoContext.jsx";
-// import BookingIndex from "./core/private/booking";
+
+// Lazy Imports
 const BookingIndex = lazy(() => import("./core/private/order"));
-
-// import CustomerForm from "./core/private/customer/form";
-const CustomerForm = lazy(() => import("./core/private/customer/form"));
-
-// import CustomerIndex from "./core/private/customer";
-const CustomerIndex = lazy(() => import("./core/private/customer"));
-
-// import Home from "./core/public/home"
 const Home = lazy(() => import("./core/public/home"));
-
-// import Login from "./core/public/login"
 const Login = lazy(() => import("./core/public/login"));
-
-// import LoginCustomer from "./core/public/login-customer"
-// const LoginCustomer = lazy(() => import("./core/public/login-customer"));
-
-// import Register from "./core/public/register"
 const Register = lazy(() => import("./core/public/register"));
-
-// import Layout from "./core/private/layout"
 const Layout = lazy(() => import("./core/private/layout"));
+const ContactUs = lazy(() => import("./core/public/ContactUs"));
+const PrivacyPolicy = lazy(() => import("./core/public/PrivacyPolicy"));
+const About = lazy(() => import("./core/public/About"));
+const TermsCondition = lazy(() => import("./core/public/TermsCondition"));
+const RefundPolicy = lazy(() => import("./core/public/RefundPolicy"));
+const CancellationPolicy = lazy(() => import("./core/public/CancellationPolicy"));
+const DeliveryCharges = lazy(() => import("./core/public/DeliveryCharges"));
+const Dashboard = lazy(() => import("./core/private/admin/pages/Dashboard"));
+const AllCategory = lazy(() => import("./core/private/admin/pages/AllCategory"));
+const AddCategory = lazy(() => import("./core/private/admin/pages/AddCategory"));
+const AddSubcategory = lazy(() => import("./core/private/admin/pages/AddSubcategory"));
+const AllSubcategory = lazy(() => import("./core/private/admin/pages/AllSubcategory"));
+const Support = lazy(() => import("./core/private/admin/pages/Support"));
+const User = lazy(() => import("./core/private/admin/pages/User"));
+const ViewItem = lazy(() => import("./core/private/admin/pages/ViewItem"));
+const AddItem = lazy(() => import("./core/private/admin/pages/AddItem"));
+const AllOrder = lazy(() => import("./core/private/admin/pages/AllOrder"));
+const PendingOrder = lazy(() => import("./core/private/admin/pages/PendingOrder"));
+const ConfirmOrder = lazy(() => import("./core/private/admin/pages/ConfirmOrder"));
+const ProcessingOrder = lazy(() => import("./core/private/admin/pages/ProcessingOrder"));
+const CompletedOrder = lazy(() => import("./core/private/admin/pages/CompletedOrder"));
+const CancelOrder = lazy(() => import("./core/private/admin/pages/CancelOrder"));
+const Review = lazy(() => import("./core/private/admin/pages/Review"));
+const Settings = lazy(() => import("./core/private/admin/pages/Setting"));
+
 
 function App() {
-    const publicRoutes = [
+    // LOGIN logic TODO
+    const isAdmin = false;
+
+    const router = createBrowserRouter([
+        // Public Routes
         {
             path: "/",
-            element: (
-                <Suspense>
-                    <Home />
-                </Suspense>
-            ),
-            // errorElement: <>error</>,
+            element: <Home />,
         },
         {
             path: "/login",
-            element: (
-                <Suspense>
-                    <Login />
-                </Suspense>
-            ),
-            errorElement: <>error</>,
+            element: <Login />,
         },
-        // {
-        //     path: "/login-customer",
-        //     element: (
-        //         <Suspense>
-        //             <LoginCustomer />
-        //         </Suspense>
-        //     ),
-        //     errorElement: <>error</>,
-        // },
         {
             path: "/register",
-            element: (
-                <Suspense>
-                    <Register />
-                </Suspense>
-            ),
-            errorElement: <>error</>,
+            element: <Register />,
         },
-        { path: "*", element: <>unauthorized</> },
-    ];
+        {
+            path: "/contact-us",
+            element: <ContactUs />,
+        },
+        {
+            path: "/privacy-and-policy",
+            element: <PrivacyPolicy />,
+        },
+        {
+            path: "/about-us",
+            element: <About />,
+        },
+        {
+            path: "/terms-and-conditions",
+            element: <TermsCondition />,
+        },
+        {
+            path: "/refund-policy",
+            element: <RefundPolicy />,
+        },
+        {
+            path: "/cancellation-policy",
+            element: <CancellationPolicy />,
+        },
+        {
+            path: "/delivery-charges",
+            element: <DeliveryCharges />,
+        },
 
-    const privateRoutes = [
+        // Private Routes (Admin)
         {
             path: "/admin",
-            element: (
-                <Suspense>
-                    <Layout />
-                </Suspense>
-            ),
-            errorElement: <>error</>,
+            element: <Layout />,
             children: [
-                {
-                    path: "/admin/customer",
-                    element: (
-                        <Suspense>
-                            <CustomerIndex />
-                        </Suspense>
-                    ),
-                    errorElement: <>error</>,
-                },
-                {
-                    path: "/admin/customer/form",
-                    element: (
-                        <Suspense>
-                            <CustomerForm />
-                        </Suspense>
-                    ),
-                    errorElement: <>error</>,
-                },
-                {
-                    path: "/admin/booking",
-                    element: (
-                        <Suspense>
-                            <BookingIndex />
-                        </Suspense>
-                    ),
-                    errorElement: <>error</>,
-                },
+                { path: "dashboard", element: <Dashboard /> },
+                { path: "category/all-categories", element: <AllCategory /> },
+                { path: "category/add-category", element: <AddCategory /> },
+                { path: "subcategory/add-subcategory", element: <AddSubcategory /> },
+                { path: "subcategory/all-subcategories", element: <AllSubcategory /> },
+                { path: "support", element: <Support /> },
+                { path: "users", element: <User /> },
+                { path: "menu/all-items", element: <ViewItem /> },
+                { path: "menu/add-item", element: <AddItem /> },
+                { path: "order/all-orders", element: <AllOrder /> },
+                { path: "order/pending-orders", element: <PendingOrder /> },
+                { path: "order/confirmed-orders", element: <ConfirmOrder /> },
+                { path: "order/processing-orders", element: <ProcessingOrder /> },
+                { path: "order/completed-orders", element: <CompletedOrder /> },
+                { path: "order/cancelled-orders", element: <CancelOrder /> },
+                { path: "reviews", element: <Review /> },
+                { path: "setting", element: <Settings /> },
+
+
+                // { path: "booking", element: <BookingIndex /> },
             ],
         },
-        { path: "*", element: <>Page not found</> },
-    ];
 
-    // LOGIN logic TODO
-    const isAdmin = false;
-    const routes = isAdmin ? privateRoutes : publicRoutes;
+        // Catch-all
+        {
+            path: "*",
+            element: <>Page not found</>,
+        },
+    ]);
+
     return (
-        <>
-            {/* <InfoProvider> */}
-            <RouterProvider router={createBrowserRouter(routes)} />
-            {/* </InfoProvider> */}
-        </>
+        <Suspense>
+            <RouterProvider router={router} />
+        </Suspense>
     );
 }
 
