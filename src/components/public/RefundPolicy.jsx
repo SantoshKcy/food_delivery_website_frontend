@@ -1,5 +1,5 @@
-import Footer from '../../components/Footer';
-import Layout from '../../components/layout';
+import Footer from '../../components/common/customer/Footer';
+import Layout from '../../components/common/customer/layout';
 const RefundPolicy = () => {
     return (
         <>
