@@ -1,41 +1,30 @@
-import React, { useState } from 'react';
+import { ModeToggle } from "@/components/common/mode-toggle"; // Import the ModeToggle component
 import {
     FaEnvelope,
     FaFacebook,
     FaInstagram,
     FaLinkedin,
     FaPhoneAlt,
-    FaTwitter,
-} from 'react-icons/fa';
-import { MdDarkMode, MdLightMode } from 'react-icons/md';
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Header = () => {
-    const [lightMode, setLightMode] = useState(true); // Set Light Mode as default
-
-    const toggleLightMode = () => {
-        setLightMode(!lightMode);
-    };
-
     return (
         <header
-            className={`header border-b ${lightMode ? 'border-black' : 'border-white'} flex justify-between items-center px-4 py-2`}
-            style={{
-                backgroundColor: lightMode ? '#fff' : '#000', // White background for light mode, black for dark mode
-                color: lightMode ? '#000' : '#fff', // Black text for light mode, white for dark mode
-            }}
+            className="header border-b border-gray-300 flex justify-between items-center px-4 py-1 bg-white dark:bg-black text-black dark:text-white"
         >
             {/* Left Section */}
             <div className="flex space-x-4 ml-16">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <a href="https://www.facebook.com/profile.php?id=61572936887262" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
                     <FaFacebook className="text-xl transition-transform transform hover:scale-110" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <a href="https://www.instagram.com/santosh_kcy/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
                     <FaInstagram className="text-xl transition-transform transform hover:scale-110" />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-                    <FaTwitter className="text-xl transition-transform transform hover:scale-110" />
+                <a href="https://x.com/santoshkc2060" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                    <FaXTwitter className="text-xl transition-transform transform hover:scale-110" />
                 </a>
-                <a href="https://threads.net" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <a href="https://www.linkedin.com/in/santosh-kc-53a748247/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
                     <FaLinkedin className="text-xl transition-transform transform hover:scale-110" />
                 </a>
             </div>
@@ -48,32 +37,9 @@ const Header = () => {
                 <span className="text-base font-medium">{'hungerend@gmail.com'}</span>
             </div>
 
-            {/* Right Section */}
+            {/* Right Section - Mode Toggle */}
             <div className="flex items-center mr-16">
-                <label className="flex items-center cursor-pointer">
-                    <input
-                        type="checkbox"
-                        className="hidden"
-                        checked={lightMode}
-                        onChange={toggleLightMode}
-                    />
-                    <div
-                        className={`w-12 h-6 flex items-center rounded-full p-1 transition-all duration-300 ${lightMode ? 'bg-orange-500' : 'bg-gray-500'}`}
-                    >
-                        <div
-                            className={`w-4 h-4 flex items-center justify-center bg-white rounded-full shadow-md transform transition-transform duration-300 ${lightMode ? 'translate-x-6' : 'translate-x-0'}`}
-                        >
-                            {lightMode ? (
-                                <MdLightMode className="text-yellow-500 text-lg" />
-                            ) : (
-                                <MdDarkMode className="text-gray-700 text-lg" />
-                            )}
-                        </div>
-                    </div>
-                    <span className="ml-2 text-base font-medium">
-                        {lightMode ? 'Light Mode' : 'Dark Mode'}
-                    </span>
-                </label>
+                <ModeToggle /> {/* Use ModeToggle from shadcn */}
             </div>
         </header>
     );

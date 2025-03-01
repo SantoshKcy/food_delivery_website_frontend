@@ -1,4 +1,5 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 
 
 const Footer = () => {
@@ -9,15 +10,16 @@ const Footer = () => {
                 <div className='ml-20'>
                     <h2 className="text-2xl font-bold flex items-center space-x-5">
                         <img
-                            src="/images/logo.png"
+                            src="/src/assets/images/logo.png"
                             alt="Hunger End Logo"
                             className="w-8 h-8"
                         />
                         <span>HUNGER END</span>
                     </h2>
                     <p className="mt-4 text-gray-400">
-                        At Hunger End, we connect you with your favourite dishes from the best restaurants around you.
+                        At Hunger End, we bring you delicious meals straight from our kitchen to your doorstep, ensuring fresh and flavorful experiences every time.
                     </p>
+
                     {/* <div className="flex space-x-4 mt-4">
                         <a
                             href="#"
@@ -96,16 +98,16 @@ const Footer = () => {
                         <li>Baneshwor-08, KTM</li>
                     </ul>
                     <div className="flex space-x-4 mt-4">
-                        <a href="#" className="text-gray-400 hover:text-blue-500">
+                        <a href="https://www.facebook.com/profile.php?id=61572936887262" className="text-gray-400 hover:text-blue-500">
                             <FaFacebook className="text-xl" />
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-blue-700">
+                        <a href="https://www.linkedin.com/in/santosh-kc-53a748247/" className="text-gray-400 hover:text-blue-700">
                             <FaLinkedin className="text-xl" />
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-blue-400">
-                            <FaTwitter className="text-xl" />
+                        <a href="https://x.com/santoshkc2060" className="text-gray-400 hover:text-blue-400">
+                            <FaXTwitter className="text-xl" />
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-pink-500">
+                        <a href="https://www.instagram.com/santosh_kcy/" className="text-gray-400 hover:text-pink-500">
                             <FaInstagram className="text-xl" />
                         </a>
                     </div>
