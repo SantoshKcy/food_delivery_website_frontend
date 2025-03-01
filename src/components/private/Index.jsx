@@ -1,5 +1,5 @@
-import Navbar from "@/components/admin/Navbar";
-import Sidebar from "@/components/admin/Sidebar";
+import Navbar from "@/components/common/admin/Navbar";
+import Sidebar from "@/components/common/admin/Sidebar";
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom'; // Import Outlet
 
