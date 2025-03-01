@@ -1,61 +1,42 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { FaEye, FaPrint, FaSearch, FaTags } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const AllOrder = () => {
+    const [orders, setOrders] = useState([]);
     const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Example order data
-    const orders = [
-        {
-            _id: 'ORDER001',
-            customerName: 'Santosh KC',
-            customerPhone: '9840922949',
-            orderDate: '2024-01-02T06:44:00',
-            totalAmount: 2000,
-            paymentStatus: 'Paid',
-            status: 'Completed',
-        },
-        {
-            _id: 'ORDER002',
-            customerName: 'John Doe',
-            customerPhone: '9876543210',
-            orderDate: '2024-02-10T14:25:00',
-            totalAmount: 1500,
-            paymentStatus: 'Pending',
-            status: 'In Progress',
-        },
-        {
-            _id: 'ORDER003',
-            customerName: 'Jane Smith',
-            customerPhone: '9876543210',
-            orderDate: '2024-02-12T12:15:00',
-            totalAmount: 2500,
-            paymentStatus: 'Paid',
-            status: 'Completed',
-        },
-    ];
+    // Fetch orders from API
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/v1/order/orders');
+                setOrders(response.data); // Assuming response.data contains the array of orders
+                setLoading(false);
+            } catch (err) {
+                setError('Failed to fetch orders');
+                setLoading(false);
+            }
+        };
+        fetchOrders();
+    }, []);
 
+    // Filter orders based on search input
     const filteredOrders = orders.filter((order) =>
         order._id.toLowerCase().includes(search.toLowerCase()) ||
-        order.customerName.toLowerCase().includes(search.toLowerCase())
+        order.billingDetails.fullName.toLowerCase().includes(search.toLowerCase())
     );
 
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        const formattedDate = new Date(date).toLocaleDateString('en-US', options);
-        const formattedTime = new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-        return (
-            <div>
-                <div>{formattedDate}</div>
-                <div>{formattedTime}</div>
-            </div>
-        );
+        return new Date(date).toLocaleDateString('en-US', options);
     };
 
-    const formatAmount = (amount, status) => {
-        return `Rs. ${amount}, ${status}`;
-    };
+    if (loading) return <div>Loading orders...</div>;
+    if (error) return <div className="text-red-500">{error}</div>;
 
     return (
         <div className="p-3 bg-white rounded-lg">
@@ -80,9 +61,9 @@ const AllOrder = () => {
                         <th className="py-2 px-4 border-b">SN</th>
                         <th className="py-2 px-4 border-b">Order ID</th>
                         <th className="py-2 px-4 border-b">Order Date</th>
-                        <th className="py-2 px-4 border-b">Customer Information</th>
-                        <th className="py-2 px-4 border-b">Total Amount</th>
-                        <th className="py-2 px-4 border-b">Order Status</th>
+                        <th className="py-2 px-4 border-b">Customer</th>
+                        <th className="py-2 px-4 border-b">Total</th>
+                        <th className="py-2 px-4 border-b">Status</th>
                         <th className="py-2 px-4 border-b">Actions</th>
                     </tr>
                 </thead>
@@ -91,17 +72,13 @@ const AllOrder = () => {
                         <tr key={order._id} className="text-center">
                             <td className="py-2 px-4 border-b">{index + 1}</td>
                             <td className="py-2 px-4 border-b">{order._id}</td>
-                            <td className="py-2 px-4 border-b">{formatDate(order.orderDate)}</td>
+                            <td className="py-2 px-4 border-b">{formatDate(order.createdAt)}</td>
                             <td className="py-2 px-4 border-b">
-                                <div>{order.customerName}</div>
-                                <div>{order.customerPhone}</div>
+                                <div>{order.billingDetails.fullName}</div>
+                                <div>{order.billingDetails.phone}</div>
                             </td>
-                            <td className="py-2 px-4 border-b">
-                                <div>{order.totalAmount}</div>
-                                <div>{order.paymentStatus}</div>
-                                {/* {formatAmount(order.totalAmount, order.paymentStatus)} */}
-                            </td>
-                            <td className="py-2 px-4 border-b">{order.status}</td>
+                            <td className="py-2 px-4 border-b">Rs. {order.totalPrice}</td>
+                            <td className="py-2 px-4 border-b">{order.orderStatus}</td>
                             <td className="py-7 px-4 border-b flex justify-center space-x-2">
                                 <Link to={`/view-order/${order._id}`} className="text-green-500 hover:text-green-700">
                                     <FaEye />
