@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/common/ui/button';
 import { cn } from '@/lib/utils';
 import { Ban, ChartBarStacked, CheckCircle, CircleEllipsis, Hourglass, Info, Newspaper } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaArrowRight, FaChevronDown, FaChevronRight, FaClipboardList, FaCog, FaHome, FaListAlt, FaPlusCircle, FaStar, FaTags, FaUtensils } from 'react-icons/fa'; // Add any other icons you need
+import { FaArrowLeft, FaArrowRight, FaChevronDown, FaChevronRight, FaClipboardList, FaCog, FaHome, FaListAlt, FaPlusCircle, FaStar, FaTags, FaUser, FaUtensils } from 'react-icons/fa'; // Add any other icons you need
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const menuItems = [
@@ -45,7 +45,10 @@ const menuItems = [
     },
     { title: 'Reviews', icon: FaStar, path: '/admin/reviews' },
     { title: 'Support', icon: Info, path: '/admin/support' },
+    { title: 'Users', icon: FaUser, path: '/admin/users' },
     { title: 'Setting', icon: FaCog, path: '/admin/setting' },
+
+
 ];
 
 export default function Sidebar({ collapsed, setCollapsed }) {

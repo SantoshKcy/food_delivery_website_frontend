@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { FaBell, FaChevronDown } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -10,25 +11,34 @@ const Navbar = () => {
     const handleDropdownClick = () => {
         setShowDropdown(false);
     };
+    const handleLogout = () => {
+        confirmAlert({
+            title: "Confirm Logout",
+            message: "Are you sure you want to logout?",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: () => {
+                        localStorage.clear();  // Clear local storage
+                        window.location.href = "/login"; // Redirect to login page
+                    },
+                },
+                {
+                    label: "No", // Do nothing if user cancels
+                },
+            ],
+        });
+    };
+
 
     return (
-        <nav className="fixed top-0 left-0 w-full flex justify-between items-center bg-white shadow-md px-6 py-3 z-50">
+        <nav className="fixed top-0 left-0 w-full flex justify-between items-center bg-white  px-6 py-4 z-50">
             {/* Hunger End Logo & Text */}
             <div className="flex items-center gap-2">
                 <Link to="/admin/dashboard" className="flex items-center gap-2">
                     <img src="/src/assets/images/logo.png" alt="Hunger End" className="w-10 h-8" />
                     <span className="text-lg font-semibold text-[#ff7918]">Hunger End</span>
                 </Link>
-            </div>
-
-            {/* Search Bar */}
-            <div className="relative w-96">
-                <input
-                    type="text"
-                    placeholder="Search here"
-                    className="w-full px-4 py-2 border bg-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-700"
-                />
-                <FiSearch className="absolute top-3.5 right-4 text-gray-700" /> {/* Adjusted top value */}
             </div>
 
             <div className="flex items-center gap-6">
@@ -56,7 +66,7 @@ const Navbar = () => {
                             alt="Profile"
                             className="w-8 h-8 rounded-full border"
                         />
-                        <FaChevronDown className="text-gray-500 text-sm" />  {/* Chevron Down Icon */}
+                        <FaChevronDown className="text-gray-500 text-sm" /> {/* Chevron Down Icon */}
                     </button>
 
                     {/* Dropdown */}
@@ -68,7 +78,7 @@ const Navbar = () => {
                                         Setting
                                     </Link>
                                 </li>
-                                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleDropdownClick}>
+                                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleLogout}>
                                     Logout
                                 </li>
                             </ul>
