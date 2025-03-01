@@ -77,7 +77,7 @@ const AllOrder = () => {
                                 <div>{order.billingDetails.fullName}</div>
                                 <div>{order.billingDetails.phone}</div>
                             </td>
-                            <td className="py-2 px-4 border-b">Rs. {order.totalPrice}</td>
+                            <td className="py-2 px-4 border-b">Rs {order.totalPrice}</td>
                             <td className="py-2 px-4 border-b">{order.orderStatus}</td>
                             <td className="py-7 px-4 border-b flex justify-center space-x-2">
                                 <Link to={`/view-order/${order._id}`} className="text-green-500 hover:text-green-700">

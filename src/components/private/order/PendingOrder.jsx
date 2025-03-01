@@ -19,7 +19,7 @@ const PendingOrder = () => {
         },
         {
             _id: 'ORDER002',
-            customerName: 'John Doe',
+            customerName: 'Anil Shrestha',
             customerPhone: '9876543210',
             orderDate: '2024-02-10T14:25:00',
             totalAmount: 1500,
@@ -28,7 +28,7 @@ const PendingOrder = () => {
         },
         {
             _id: 'ORDER003',
-            customerName: 'Jane Smith',
+            customerName: 'Ramesh Thapa',
             customerPhone: '9876543210',
             orderDate: '2024-02-12T12:15:00',
             totalAmount: 2500,

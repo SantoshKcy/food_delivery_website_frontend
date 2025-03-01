@@ -1,8 +1,51 @@
 import { Card } from "@/components/common/ui/card";
+import axios from "axios";
 import { DollarSign, LayoutDashboard, List, ShoppingBag, User } from 'lucide-react';
 import { Bar, BarChart, Cell, Legend, Pie, PieChart, Tooltip, XAxis, YAxis } from 'recharts';
 
+import { useEffect, useState } from "react";
+const API_BASE_URL = "http://localhost:3000/api/v1"; // Your backend base URL
+
 const Dashboard = () => {
+    const [users, setUsers] = useState(0);
+    const [orders, setOrders] = useState(0);
+    const [items, setItems] = useState(0);
+    // const [categories, setCategories] = useState(0);
+    const [revenue, setRevenue] = useState(0);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch Customers
+                const userResponse = await axios.get(`${API_BASE_URL}/auth/getAllCustomers`);
+                setUsers(userResponse.data.count || 0);
+
+                // Fetch Orders
+                const orderResponse = await axios.get(`${API_BASE_URL}/order/orders`);
+                setOrders(orderResponse.data.length); // Assuming response is an array of orders
+
+
+                const totalRevenue = orderResponse.data
+                    ? orderResponse.data.reduce((sum, order) => sum + (order.totalPrice || 0), 0)
+                    : 0;
+                setRevenue(totalRevenue);
+
+                // Fetch Menu Items
+                const itemResponse = await axios.get(`${API_BASE_URL}/item/getItems`);
+                setItems(itemResponse.data.count || 0);
+
+                // // Fetch Categories
+                // const categoryResponse = await axios.get(`${API_BASE_URL}/category/getCategories`);
+                // setCategories(categoryResponse.data.count || 0);
+
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const data = [
         { name: 'Jan', orders: 400, revenue: 2400 },
         { name: 'Feb', orders: 300, revenue: 2210 },
@@ -33,28 +76,28 @@ const Dashboard = () => {
                     <User size={32} />
                     <div>
                         <h2 className="text-lg font-semibold">Users</h2>
-                        <p className="text-xl font-bold">1,200</p>
+                        <p className="text-xl font-bold">{users}</p>
                     </div>
                 </Card>
                 <Card className="p-4 flex items-center gap-4 bg-green-100 shadow-md">
                     <ShoppingBag size={32} />
                     <div>
                         <h2 className="text-lg font-semibold">Orders</h2>
-                        <p className="text-xl font-bold">350</p>
+                        <p className="text-xl font-bold">{orders}</p>
                     </div>
                 </Card>
                 <Card className="p-4 flex items-center gap-4 bg-yellow-100 shadow-md">
                     <DollarSign size={32} />
                     <div>
                         <h2 className="text-lg font-semibold">Revenue</h2>
-                        <p className="text-xl font-bold">$4,500</p>
+                        <p className="text-xl font-bold">Rs {revenue}</p>
                     </div>
                 </Card>
                 <Card className="p-4 flex items-center gap-4 bg-red-100 shadow-md">
                     <List size={32} />
                     <div>
                         <h2 className="text-lg font-semibold">Menu Items</h2>
-                        <p className="text-xl font-bold">45</p>
+                        <p className="text-xl font-bold">{items}</p>
                     </div>
                 </Card>
             </div>
@@ -104,7 +147,7 @@ const Dashboard = () => {
                     </ul>
                 </Card>
                 <Card className="p-4 shadow-md">
-                    <h2 className="text-lg font-semibold mb-4">Top Rated Foods</h2>
+                    <h2 className="text-lg font-semibold mb-4">Top Category</h2>
                     <ul className="list-disc ml-4">
                         <li>Grilled Chicken - 4.9/5</li>
                         <li>Vegan Salad - 4.8/5</li>

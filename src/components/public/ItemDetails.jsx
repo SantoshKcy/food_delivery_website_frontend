@@ -117,7 +117,7 @@ const ItemDetails = () => {
                     <h2 className="text-2xl font-bold text-gray-800">{item.name}</h2>
 
                     <span className="text-[#ff7918] font-semibold text-xl">
-                        ${parseFloat(item.price).toLocaleString()}
+                        Rs {parseFloat(item.price).toLocaleString()}
                     </span>
 
                     <p className="text-gray-600 leading-relaxed">{item.description}</p>

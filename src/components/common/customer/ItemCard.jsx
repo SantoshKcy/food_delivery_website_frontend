@@ -110,7 +110,7 @@ const ItemCard = ({ item, customerId }) => {
                 </div>
             </div>
 
-            <span className="font-bold text-lg mt-2 text-[#ff7918] block">${item.price}</span>
+            <span className="font-bold text-lg mt-2 text-[#ff7918] block">Rs {item.price}</span>
 
             <div className="flex items-center mt-4 space-x-2">
                 <div className="flex items-center border border-black rounded-md">
@@ -154,7 +154,7 @@ const ItemCard = ({ item, customerId }) => {
                     </button>
                 </div>
                 <p className="text-gray-600 mb-4">{item.description}</p>
-                <span className="font-bold text-lg text-[#ff7918] block mb-4">${item.price}</span>
+                <span className="font-bold text-lg text-[#ff7918] block mb-4">Rs {item.price}</span>
 
                 {/* Quantity Selector and Add to Cart button side by side */}
                 <div className="flex items-center justify-between space-x-4">

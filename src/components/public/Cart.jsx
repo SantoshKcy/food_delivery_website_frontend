@@ -157,7 +157,7 @@ const Cart = () => {
                                                         className="w-16 h-16 object-cover rounded-md mx-auto"
                                                     />
                                                 </td>
-                                                <td className="p-3 text-center">${item.itemId.price}</td>
+                                                <td className="p-3 text-center">Rs {item.itemId.price}</td>
                                                 <td className="p-3 text-center">
                                                     <div className="flex items-center justify-center">
                                                         <button

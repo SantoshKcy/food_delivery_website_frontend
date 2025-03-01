@@ -99,7 +99,7 @@ const MyOrders = () => {
                                                     <td className="px-4 py-2">{item.itemId.name}</td>
                                                     <td className="px-4 py-2">{item.itemId.description}</td>
                                                     <td className="px-4 py-2">{item.quantity}</td>
-                                                    <td className="px-4 py-2">{item.price}</td>
+                                                    <td className="px-4 py-2">Rs {item.price}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -107,8 +107,8 @@ const MyOrders = () => {
                                 </div>
 
                                 <div className="flex justify-between mt-4">
-                                    <p className="text-lg font-semibold">Subtotal: £{order.subtotal}</p>
-                                    <p className="text-lg font-semibold">Total Price: £{order.totalPrice}</p>
+                                    <p className="text-lg font-semibold">Subtotal: Rs {order.subtotal}</p>
+                                    <p className="text-lg font-semibold">Total Price: Rs {order.totalPrice}</p>
                                 </div>
                             </div>
                         ))

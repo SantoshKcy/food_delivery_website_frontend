@@ -84,7 +84,7 @@ const Wishlist = () => {
                                                 <img src={item.itemId.image ? `http://localhost:3000/uploads/${item.itemId.image}` : undefined} className="w-16 h-16 object-cover rounded-md mx-auto" />
                                             </td>
                                             <td className="p-3 text-center font-semibold">
-                                                ${item.itemId.price.toFixed(2)}
+                                                Rs {item.itemId.price.toFixed(2)}
                                             </td>
                                             <td className="p-3 text-center">
                                                 <button
