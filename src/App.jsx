@@ -44,8 +44,7 @@ const Checkout = lazy(() => import("./components/public/Checkout"));
 const Menu = lazy(() => import("./components/public/Menu"));
 const OrderSuccess = lazy(() => import("./components/public/OrderSuccess"));
 const SearchResults = lazy(() => import("./components/public/SearchResults"));
-const Failure = lazy(() => import("./components/common/customer/Failure"));
-const Success = lazy(() => import("./components/common/customer/Success"));
+
 
 
 
@@ -77,8 +76,6 @@ function App() {
         { path: "/menu", element: <Suspense><Menu /></Suspense>, errorElement: <>Error</> },
         { path: "/searchresult", element: <Suspense><SearchResults /></Suspense>, errorElement: <>Error</> },
         { path: "/checkout/success", element: <Suspense><OrderSuccess /></Suspense>, errorElement: <>Error</> },
-        { path: "/payment/success", element: <Suspense><Success /></Suspense>, errorElement: <>Error</> },
-        { path: "/payment/failure", element: <Suspense><Failure /></Suspense>, errorElement: <>Error</> },
         { path: "*", element: <div>404: Page not found</div> },
     ];
 
