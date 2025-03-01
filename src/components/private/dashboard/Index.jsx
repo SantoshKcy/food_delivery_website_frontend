@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/common/ui/card";
 import { DollarSign, LayoutDashboard, List, ShoppingBag, User } from 'lucide-react';
 import { Bar, BarChart, Cell, Legend, Pie, PieChart, Tooltip, XAxis, YAxis } from 'recharts';
 
