@@ -1,18 +1,17 @@
+import KhaltiCheckout from "khalti-checkout-web";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import KhaltiCheckout from "khalti-checkout-web";
 
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../common/customer/Footer";
 import Layout from "../common/customer/layout";
-import { CloudCog } from "lucide-react";
 
 const Checkout = () => {
 
     const userId = localStorage.getItem("userId");
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
 
@@ -50,69 +49,69 @@ const Checkout = () => {
         eventHandler: {
             onSuccess(payload) {
                 console.log("Payment Successful:", payload);
-        
+
                 fetch("http://localhost:3000/api/khalti/verify", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ token: payload.token, amount: totalPrice }),
                 })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.message === "Payment verified successfully") {
-                        toast.success("Payment successful!");
-                        const orderData = {
-                            userId,
-                            cartItems: cartItems.map(item => ({
-                                itemId: item.itemId,
-                                price: item.itemId.price,
-                                quantity: item.quantity,
-                            })),
-                            billingDetails,
-                            paymentMethod: "khalti",
-                            subtotal,
-                            deliveryCharge,
-                            totalPrice,
-                            status: "pending",
-                        };
-        
-                        fetch("http://localhost:3000/api/v1/order/orders", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(orderData),
-                        })
-                        .then((res) => {
-                            if (res.ok) {  
-                                return res.json();
-                            } else {
-                                throw new Error("Server responded with an error");
-                            }
-                        })
-                        .then((data) => {
-                            localStorage.removeItem("cartItems");
-                            toast.success("Order placed successfully!", {
-                                position: "top-right",
-                                autoClose: 5000,
-                            });
-        
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.message === "Payment verified successfully") {
+                            toast.success("Payment successful!");
+                            const orderData = {
+                                userId,
+                                cartItems: cartItems.map(item => ({
+                                    itemId: item.itemId,
+                                    price: item.itemId.price,
+                                    quantity: item.quantity,
+                                })),
+                                billingDetails,
+                                paymentMethod: "khalti",
+                                subtotal,
+                                deliveryCharge,
+                                totalPrice,
+                                status: "pending",
+                            };
 
-                            setTimeout(() => {
-                                navigate("/checkout/success");
-                            }, 5000);
-                        })
-                        .catch((error) => {
-                            console.error("Error:", error);
-                            toast.error("Error placing order. Please try again.", {
-                                position: "top-right",
-                                autoClose: 5000,
-                            });
-                        });
-                    } else {
-                        toast.error("Payment verification failed!");
-                    }
-                })
-                .catch((err) => console.error("Error verifying payment:", err));
+                            fetch("http://localhost:3000/api/v1/order/orders", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(orderData),
+                            })
+                                .then((res) => {
+                                    if (res.ok) {
+                                        return res.json();
+                                    } else {
+                                        throw new Error("Server responded with an error");
+                                    }
+                                })
+                                .then((data) => {
+                                    localStorage.removeItem("cartItems");
+                                    toast.success("Order placed successfully!", {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                    });
+
+
+                                    setTimeout(() => {
+                                        navigate("/checkout/success");
+                                    }, 5000);
+                                })
+                                .catch((error) => {
+                                    console.error("Error:", error);
+                                    toast.error("Error placing order. Please try again.", {
+                                        position: "top-right",
+                                        autoClose: 5000,
+                                    });
+                                });
+                        } else {
+                            toast.error("Payment verification failed!");
+                        }
+                    })
+                    .catch((err) => console.error("Error verifying payment:", err));
             },
             onError(error) {
                 console.error("Payment Error:", error);
@@ -121,10 +120,15 @@ const Checkout = () => {
         },
     };
 
-    
-    
+
+
 
     const handleOrderSubmit = async () => {
+        if (totalPrice > 200.0) {
+            toast.error("Amount exceeds the limit of Rs 200. Please reduce the total price.");
+            return;
+        }
+
         if (paymentMethod === "khalti") {
             const khalti = new KhaltiCheckout(khaltiConfig);
             khalti.show({ amount: totalPrice * 100 });

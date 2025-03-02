@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the styles
@@ -102,16 +100,16 @@ const Login = () => {
                         {error.password && <p className="text-red-500 text-sm mt-1">{error.password}</p>} {/* Show password error */}
                     </div>
 
-                    <div className="text-right mb-4">
+                    {/* <div className="text-right mb-4">
                         <a href="#" className="text-[#ff7918] text-sm font-medium hover:underline">Forgot password?</a>
-                    </div>
+                    </div> */}
 
                     <button type="submit" className="w-full bg-[#ff7918] text-white font-semibold p-3 rounded-lg hover:bg-[#e86a15] transition">
                         Log in
                     </button>
                 </form>
 
-                <div className="my-4 flex items-center">
+                {/* <div className="my-4 flex items-center">
                     <hr className="flex-grow border-gray-300" />
                     <span className="mx-2 text-gray-400 text-sm">or</span>
                     <hr className="flex-grow border-gray-300" />
@@ -125,7 +123,7 @@ const Login = () => {
                 <button className="w-full flex items-center justify-center border border-gray-300 p-3 rounded-lg hover:bg-gray-100 transition font-medium text-gray-500">
                     <FaFacebook className="mr-2 text-xl text-[#1877F2]" />
                     Sign in with Facebook
-                </button>
+                </button> */}
                 <p className="text-center text-sm text-gray-500 mt-4">
                     New to Hunger End? <a href="/register" className="text-[#ff7918] font-medium hover:underline">Create Account</a>
                 </p>

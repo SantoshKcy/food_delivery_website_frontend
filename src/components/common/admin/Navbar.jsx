@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { FaBell, FaChevronDown } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -43,7 +43,7 @@ const Navbar = () => {
 
             <div className="flex items-center gap-6">
                 {/* Notification Bell */}
-                <div className="relative cursor-pointer">
+                {/* <div className="relative cursor-pointer">
                     <FaBell className="text-blue-500 text-xl" />
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
                         1
@@ -51,8 +51,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Divider */}
-                <span className="text-gray-500">|</span>
-
+                {/* <span className="text-gray-500">|</span> */}
                 {/* Profile Dropdown */}
                 <div className="relative">
                     <button

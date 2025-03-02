@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Eye, Star, X } from "lucide-react";
+import { Eye, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import Modal from "react-modal";
@@ -104,10 +104,10 @@ const ItemCard = ({ item, customerId }) => {
 
             <div className="flex justify-between items-center mt-4">
                 <h3 className="text-base font-semibold" onClick={() => navigate(`/item/details/${item._id}`)}>{item.name}</h3>
-                <div className="bg-green-500 text-white px-2 py-1 rounded-lg flex items-center space-x-1">
+                {/* <div className="bg-green-500 text-white px-2 py-1 rounded-lg flex items-center space-x-1">
                     <span className="font-medium">5.0</span>
                     <Star size={14} />
-                </div>
+                </div> */}
             </div>
 
             <span className="font-bold text-lg mt-2 text-[#ff7918] block">Rs {item.price}</span>
@@ -145,10 +145,7 @@ const ItemCard = ({ item, customerId }) => {
                 </div>
                 <div className="relative">
                     <img src={`http://localhost:3000/uploads/${item.image}`} alt={item.name} className="w-full h-48 object-cover rounded-md mb-4" />
-                    <div className="absolute bottom-2 left-2 bg-green-500 text-white px-2 py-1 rounded-lg flex items-center space-x-1">
-                        <span className="font-medium">5.0</span>
-                        <Star size={14} />
-                    </div>
+
                     <button className={`absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md ${isWishlisted ? "text-red-500" : "text-black"}`} onClick={toggleWishlist}>
                         <FaHeart size={18} />
                     </button>

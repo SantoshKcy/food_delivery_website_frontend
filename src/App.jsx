@@ -31,7 +31,7 @@ const CompletedOrder = lazy(() => import("./components/private/order/CompletedOr
 const ConfirmOrder = lazy(() => import("./components/private/order/ConfirmOrder"));
 const PendingOrder = lazy(() => import("./components/private/order/PendingOrder"));
 const ProcessingOrder = lazy(() => import("./components/private/order/ProcessingOrder"));
-const Review = lazy(() => import("./components/private/user/Review"));
+// const Review = lazy(() => import("./components/private/user/Review"));
 const Settings = lazy(() => import("./components/private/user/Form"));
 const AllOrder = lazy(() => import("./components/private/order"));
 const Support = lazy(() => import("./components/private/user/Support"));
@@ -103,7 +103,7 @@ function App() {
                 { path: "order/processing-orders", element: <Suspense><ProcessingOrder /></Suspense>, errorElement: <>Error</> },
                 { path: "order/completed-orders", element: <Suspense><CompletedOrder /></Suspense>, errorElement: <>Error</> },
                 { path: "order/cancelled-orders", element: <Suspense><CancelOrder /></Suspense>, errorElement: <>Error</> },
-                { path: "reviews", element: <Suspense><Review /></Suspense>, errorElement: <>Error</> },
+                // { path: "reviews", element: <Suspense><Review /></Suspense>, errorElement: <>Error</> },
                 { path: "setting", element: <Suspense><Settings /></Suspense>, errorElement: <>Error</> },
             ],
         },

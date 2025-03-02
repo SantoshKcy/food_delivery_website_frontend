@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -102,10 +101,10 @@ const ItemDetails = () => {
                         src={`http://localhost:3000/uploads/${item.image}`}
                         className="w-full h-[300px] object-cover rounded-lg shadow-lg"
                         alt={item.name} />
-                    <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-lg flex items-center space-x-1 shadow-md">
+                    {/* <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-lg flex items-center space-x-1 shadow-md">
                         <span className="font-medium">5.0</span>
                         <Star size={16} />
-                    </div>
+                    </div> */}
                     <button className={`absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 ${isWishlisted ? "text-red-500" : "text-black"}`} onClick={toggleWishlist}>
                         <FaHeart size={20} />
                     </button>

@@ -97,64 +97,63 @@ const AllItem = () => {
             {isError && <p className="text-red-500">Error fetching items.</p>}
 
             {!isLoading && !isError && (
-                <table className="min-w-full bg-white border border-gray-200">
-                    <thead className="bg-gray-100">
-                        <tr>
-                            <th className="py-2 px-4 border-b">SN</th>
-                            <th className="py-2 px-4 border-b">Item ID</th>
-                            <th className="py-2 px-4 border-b">Name</th>
-                            <th className="py-2 px-4 border-b">Category</th>
-                            <th className="py-2 px-4 border-b">Subcategory</th>
-                            <th className="py-2 px-4 border-b">Image</th>
-                            <th className="py-2 px-4 border-b">Description</th>
-                            <th className="py-2 px-4 border-b">Price</th>
-                            <th className="py-2 px-4 border-b">Tags</th> {/* Displaying tags */}
-                            <th className="py-2 px-4 border-b">Availability</th>
-                            <th className="py-2 px-4 border-b">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredItems.map((item, index) => (
-                            <tr key={item._id} className="text-center">
-                                <td className="py-2 px-4 border-b">{index + 1}</td>
-                                <td className="py-2 px-4 border-b">{item._id}</td>
-                                <td className="py-2 px-4 border-b">{item.name}</td>
-                                <td className="py-2 px-4 border-b">{item.category.name}</td>
-                                <td className="py-2 px-4 border-b">{item.subcategory.name}</td>
-                                <td className="py-2 px-4 border-b">
-                                    <img
-                                        src={`http://localhost:3000/uploads/${item.image}`}  // Full image URL
-                                        alt={item.name}
-                                        className="w-20 h-15 object-cover rounded mx-auto"
-                                    />
-                                </td>
-                                <td className="py-2 px-4 border-b">{item.description}</td>
-                                <td className="py-2 px-4 border-b">{item.price}</td>
-                                <td className="py-2 px-4 border-b">
-                                    {item.tags ? item.tags.join(', ') : 'N/A'} {/* Displaying tags */}
-                                </td>
-                                <td className="py-2 px-4 border-b">{item.availability}</td>
-                                <td className="py-10 px-4 border-b flex justify-center space-x-2">
-                                    <button
-                                        onClick={() => {
-
-                                            window.location.href = `/admin/menu/edit-item/${item._id}`;
-                                        }}
-                                        className="text-blue-500 hover:text-blue-700"
-                                    >
-                                        <FaEdit />
-                                    </button>
-                                    <button
-                                        className="text-red-500 hover:text-red-700"
-                                        onClick={() => handleDelete(item._id)}
-                                    >
-                                        <FaTrash />
-                                    </button>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="w-full table-auto border border-gray-200">
+                        <thead className="bg-gray-100">
+                            <tr>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">SN</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Item ID</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Name</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Category</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Subcategory</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Image</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Description</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Price</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Tags</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Availability</th>
+                                <th className="py-2 px-4 border-b whitespace-nowrap">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {filteredItems.map((item, index) => (
+                                <tr key={item._id} className="text-center">
+                                    <td className="py-2 px-4 border-b">{index + 1}</td>
+                                    <td className="py-2 px-4 border-b">{item._id}</td>
+                                    <td className="py-2 px-4 border-b">{item.name}</td>
+                                    <td className="py-2 px-4 border-b">{item.category.name}</td>
+                                    <td className="py-2 px-4 border-b">{item.subcategory.name}</td>
+                                    <td className="py-2 px-4 border-b">
+                                        <img
+                                            src={`http://localhost:3000/uploads/${item.image}`}
+                                            alt={item.name}
+                                            className="w-20 h-15 object-cover rounded mx-auto"
+                                        />
+                                    </td>
+                                    <td className="py-2 px-4 border-b">{item.description}</td>
+                                    <td className="py-2 px-4 border-b">Rs {item.price}</td>
+                                    <td className="py-2 px-4 border-b">{item.tags ? item.tags.join(', ') : 'N/A'}</td>
+                                    <td className="py-2 px-4 border-b">{item.availability}</td>
+                                    <td className="py-10 px-4 border-b flex justify-center space-x-2">
+                                        <button
+                                            onClick={() => {
+                                                window.location.href = `/admin/menu/edit-item/${item._id}`;
+                                            }}
+                                            className="text-blue-500 hover:text-blue-700"
+                                        >
+                                            <FaEdit />
+                                        </button>
+                                        <button
+                                            className="text-red-500 hover:text-red-700"
+                                            onClick={() => handleDelete(item._id)}
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     );

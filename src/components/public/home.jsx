@@ -37,8 +37,8 @@ const Home = () => {
             <Hero />
             <div>
                 <section className="bg-gray-100 p-4">
-                    <h2 className="text-xl font-medium ml-16 p-2">Featured Items</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 ml-16">
+                    <h2 className="text-xl font-medium mr-15 p-2">Featured Items</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mr-15">
                         {featuredItems.map((item) => (
                             <ItemCard key={item.id || item._id || item.name} item={item} customerId={customerId} />
                         ))}
@@ -46,8 +46,8 @@ const Home = () => {
                 </section>
 
                 <section className="bg-gray-100 p-4">
-                    <h2 className="text-xl font-medium ml-16 p-2">Trending Items</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 ml-16">
+                    <h2 className="text-xl font-medium mr-15 p-2">Trending Items</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mr-15">
                         {trendingItems.map((item) => (
                             <ItemCard key={item.id || item._id || item.name} item={item} customerId={customerId} />
                         ))}
@@ -55,8 +55,8 @@ const Home = () => {
                 </section>
 
                 <section className="bg-gray-100 p-4">
-                    <h2 className="text-xl font-medium ml-16 p-2">Best Seller Items</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 ml-16">
+                    <h2 className="text-xl font-medium mr-15 p-2">Best Seller Items</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mr-15">
                         {bestSellerItems.map((item) => (
                             <ItemCard key={item.id || item._id || item.name} item={item} customerId={customerId} />
                         ))}
@@ -64,8 +64,8 @@ const Home = () => {
                 </section>
 
                 <section className="bg-gray-100 p-4">
-                    <h2 className="text-xl font-medium ml-16 p-2">Hunger End Special</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 ml-16">
+                    <h2 className="text-xl font-medium mr-15 p-2">Hunger End Special</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mr-15">
                         {specialItems.map((item) => (
                             <ItemCard key={item.id || item._id || item.name} item={item} customerId={customerId} />
                         ))}

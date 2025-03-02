@@ -3,9 +3,9 @@ import { FaCommentDots } from 'react-icons/fa';
 
 const Support = () => {
     const [feedbacks, setFeedbacks] = useState([
-        { _id: 1, name: 'John Doe', email: 'john@example.com', title: 'Great Service', message: 'Loved the experience!', date: '2025-02-15' },
-        { _id: 2, name: 'Jane Smith', email: 'jane@example.com', title: 'Good App', message: 'App is user-friendly.', date: '2025-02-14' },
-        { _id: 3, name: 'Alice Johnson', email: 'alice@example.com', title: 'Support Needed', message: 'Had an issue with payment.', date: '2025-02-13' },
+        { _id: 1, name: 'Santosh KC', email: 'santosh@gmail.com', title: 'Great Service', message: 'Loved the experience!', date: '2025-02-15' },
+        { _id: 2, name: 'Ramesh Thapa', email: 'ramesh@gmail.com', title: 'Good App', message: 'App is user-friendly.', date: '2025-02-14' },
+        { _id: 3, name: 'Naran KC', email: 'naran@example.com', title: 'Support Needed', message: 'Had an issue with payment.', date: '2025-02-13' },
     ]);
 
     return (
